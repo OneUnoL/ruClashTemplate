@@ -1,0 +1,66 @@
+mixed-port: 7890
+allow-lan: true
+tcp-concurrent: true
+mode: rule
+log-level: info
+ipv6: false
+unified-delay: true
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: true
+
+sniffer:
+  enable: true
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+  force-domain:
+    - "+"
+
+dns:
+  enable: true
+  enhanced-mode: redir-host
+  listen: 127.0.0.1:6868
+  nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+
+{{ conf | except("proxy-groups", "port", "mode", "rules") | yaml }}
+
+proxy-groups:
+- name: 'PROXY'
+  type: 'select'
+  proxies:
+  {{ proxy_remarks | yaml | indent(2) }}
+
+rule-providers:
+  ytka_direct:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/OneUnoL/ruClashTemplate/main/ruDirectGeoSite.yaml"
+    path: ./ruleset/ytka_direct.yaml
+    interval: 86400
+
+  geoip_ru:
+    type: http
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/ru.yaml"
+    path: ./ruleset/geoip_ru.yaml
+    interval: 86400
+
+rules:
+  - RULE-SET,ytka_direct,DIRECT
+  - RULE-SET,geoip_ru,DIRECT
+  - MATCH,PROXY
