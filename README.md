@@ -1,2 +1,2 @@
 ```text
-https://raw.githubusercontent.com/OneUnoL/ruClashTemplate/main/mainTemplate
+https://raw.githubusercontent.com/OneUnoL/ruClashTemplate/main/mainTemplate.yaml
