@@ -62,7 +62,7 @@ rule-providers:
 
   ADS:
     type: http
-    behavior: classical
+    behavior: domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.yaml"
     path: ./ruleset/ADS.yaml
     interval: 86400
