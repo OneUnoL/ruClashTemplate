@@ -46,21 +46,29 @@ proxy-groups:
   {{ proxy_remarks | yaml | indent(2) }}
 
 rule-providers:
-  ytka_direct:
+  GeoSiteDirect:
     type: http
     behavior: domain
     url: "https://raw.githubusercontent.com/OneUnoL/ruClashTemplate/main/ruDirectGeoSite.yaml"
-    path: ./ruleset/ytka_direct.yaml
+    path: ./ruleset/GeoSiteDirect.yaml
     interval: 86400
 
-  geoip_ru:
+  GeoIpDirect:
     type: http
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/ru.yaml"
-    path: ./ruleset/geoip_ru.yaml
+    path: ./ruleset/GeoIpDirect.yaml
+    interval: 86400
+
+  ADS:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.yaml"
+    path: ./ruleset/ADS.yaml
     interval: 86400
 
 rules:
-  - RULE-SET,ytka_direct,DIRECT
-  - RULE-SET,geoip_ru,DIRECT
+  - RULE-SET,ADS,REJECT
+  - RULE-SET,GeoSiteDirect,DIRECT
+  - RULE-SET,GeoIpDirect,DIRECT
   - MATCH,PROXY
