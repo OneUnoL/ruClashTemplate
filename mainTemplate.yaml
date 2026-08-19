@@ -68,7 +68,7 @@ rule-providers:
     interval: 86400
 
 rules:
-  - RULE-SET,ADS,REJECT
+  - RULE-SET,ADS,REJECT-DROP
   - RULE-SET,GeoSiteDirect,DIRECT
   - RULE-SET,GeoIpDirect,DIRECT
   - MATCH,PROXY
