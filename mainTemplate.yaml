@@ -70,5 +70,5 @@ rule-providers:
 rules:
   - RULE-SET,GeoSiteDirect,DIRECT
   - RULE-SET,GeoIpDirect,DIRECT
-  - RULE-SET,ADS,REJECT
+  - RULE-SET,ADS,REJECT-DROP
   - MATCH,PROXY
