@@ -45,11 +45,11 @@ proxy-groups:
   {{ proxy_remarks | yaml | indent(2) }}
 
 rule-providers:
-  GeoIpPrivate:
+  PrivateIpDirect:
     type: http
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.yaml"
-    path: ./ruleset/GeoIpPrivate.yaml
+    path: ./ruleset/PrivateIpDirect.yaml
     interval: 86400
     
   GeoSiteDirect:
@@ -74,7 +74,7 @@ rule-providers:
     interval: 86400
 
 rules:
-  - RULE-SET,GeoIpPrivate,DIRECT
+  - RULE-SET,PrivateIpDirect,DIRECT
   - RULE-SET,GeoSiteDirect,DIRECT
   - RULE-SET,GeoIpDirect,DIRECT
   - RULE-SET,ADS,REJECT
