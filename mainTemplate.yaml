@@ -21,6 +21,7 @@ tun:
 
 sniffer:
   enable: true
+  override-destination: true
   sniff:
     TLS:
       ports: [443, 8443]
@@ -29,7 +30,7 @@ sniffer:
 
 dns:
   enable: true
-  enhanced-mode: redir-host
+  enhanced-mode: fake-ip
   listen: 127.0.0.1:6868
   nameserver:
     - 1.1.1.1
